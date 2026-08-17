@@ -1,0 +1,320 @@
+/* === SpiralCards V2: 旋转楼梯逐卡登场 === */
+
+.spiral-section {
+  position: relative;
+  padding-top: clamp(80px, 10vh, 140px);
+}
+
+.spiral-section__head {
+  position: relative;
+  z-index: 2;
+  margin-bottom: 0;
+  max-width: 920px;
+  padding-bottom: clamp(24px, 6vh, 60px);
+}
+.spiral-section__head .eyebrow {
+  margin-bottom: 20px;
+}
+.spiral-section__head .h2 {
+  margin-bottom: 0;
+}
+
+/* Sticky 舞台：section 高 840vh，stage 粘在视口中心，镜头跟随每张卡登场位置 */
+.spiral-stage {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  perspective: 3600px;
+  perspective-origin: 50% 50%;
+  isolation: isolate;
+}
+.spiral-stage.is-static {
+  height: auto;
+  position: static;
+  perspective: none;
+  min-height: 100vh;
+}
+
+/* 背景氛围渐变：加一个"舞台深度"暗角，让楼梯边缘淡出更自然 */
+.spiral-stage::before,
+.spiral-stage::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+  z-index: 0;
+}
+.spiral-stage::before {
+  inset: 0;
+  background:
+    radial-gradient(55% 55% at 50% 52%, var(--accent-soft), transparent 68%),
+    linear-gradient(180deg, transparent 0%, oklch(11% 0.012 230 / 0.88) 92%);
+}
+.spiral-stage::after {
+  inset: 0;
+  background-image:
+    linear-gradient(oklch(80% 0.13 195 / 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, oklch(80% 0.13 195 / 0.05) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(70% 65% at 50% 52%, #000 16%, transparent 86%);
+  opacity: 0.8;
+}
+
+/* 世界层：3D 旋转。顺序是 translate → rotateX → rotateY（右乘） */
+.spiral-stage__world {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 1px;
+  height: 1px;
+  margin: -0.5px 0 0 -0.5px;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+.spiral-stage.is-static .spiral-stage__world {
+  position: static;
+  width: auto;
+  height: auto;
+  transform: none !important;
+  transform-style: flat;
+  padding: 60px 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 22px;
+  margin: 0;
+}
+
+/* 单张卡片 */
+.spcard {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: clamp(200px, 22vw, 280px);
+  aspect-ratio: 3 / 4.2;
+  margin: calc(clamp(200px, 22vw, 280px) * -4.2 / 3 / 2) 0 0 calc(clamp(200px, 22vw, 280px) * -0.5);
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  will-change: transform, opacity;
+  z-index: 1;
+  opacity: 0;
+  filter: drop-shadow(0 20px 40px oklch(0% 0 0 / 0.5));
+}
+.spiral-stage.is-static .spcard {
+  position: static;
+  top: auto;
+  left: auto;
+  width: auto;
+  aspect-ratio: 3 / 4.2;
+  margin: 0;
+  transform: none !important;
+  opacity: 1 !important;
+}
+
+/* 半透明玻璃态底板（降低底色不透明度，让图片更清晰） */
+.spcard__glass {
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  background: oklch(20% 0.02 230 / 0.3);
+  backdrop-filter: blur(6px) saturate(1.1);
+  -webkit-backdrop-filter: blur(6px) saturate(1.1);
+  border: 1px solid oklch(80% 0.13 195 / 0.28);
+  box-shadow:
+    inset 0 1px 0 oklch(96% 0.005 230 / 0.08),
+    0 20px 60px -20px oklch(0% 0 0 / 0.6),
+    0 0 0 1px oklch(0% 0 0 / 0.3),
+    0 0 60px -20px var(--accent-glow);
+  z-index: 1;
+}
+
+/* 图片区（图片比例更大，更醒目，遮罩更薄） */
+.spcard__img {
+  position: absolute;
+  inset: 8px 8px calc(8px + 30%);
+  border-radius: 10px;
+  overflow: hidden;
+  z-index: 2;
+  isolation: isolate;
+  box-shadow: 0 10px 30px -15px oklch(0% 0 0 / 0.8),
+              inset 0 0 0 1px oklch(96% 0.005 230 / 0.06);
+}
+.spcard__img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transform: translateZ(0);
+  filter: saturate(1.05) contrast(1.05) brightness(1.05);
+}
+.spcard__img-veil {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, transparent 55%, oklch(11% 0.012 230 / 0.35) 100%),
+    radial-gradient(60% 50% at 100% 0%, oklch(80% 0.13 195 / 0.08), transparent 60%);
+  pointer-events: none;
+}
+
+/* 内容区 */
+.spcard__body {
+  position: absolute;
+  left: 8px;
+  right: 8px;
+  bottom: 8px;
+  padding: 10px 14px 12px;
+  z-index: 3;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: auto auto auto;
+  row-gap: 2px;
+  column-gap: 10px;
+}
+.spcard__cat {
+  grid-column: 1;
+  font-size: 0.64rem;
+  letter-spacing: 0.18em;
+  color: var(--accent);
+}
+.spcard__idx {
+  grid-column: 2;
+  grid-row: 1 / span 3;
+  align-self: end;
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  color: var(--text-2);
+}
+.spcard__name-zh {
+  grid-column: 1;
+  font-family: var(--font-zh);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-0);
+  letter-spacing: 0.01em;
+  line-height: 1.25;
+}
+.spcard__name-en {
+  grid-column: 1;
+  font-size: 0.74rem;
+  color: var(--text-1);
+  letter-spacing: 0.02em;
+  line-height: 1.3;
+}
+
+/* 科技感边缘光（CSS mask 切出 1px 边框环，不再用不透明背景盖死卡片） */
+.spcard__edge {
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  pointer-events: none;
+  z-index: 4;
+  overflow: hidden;
+  padding: 1px;
+  -webkit-mask:
+    linear-gradient(#000, #000) content-box,
+    linear-gradient(#000, #000);
+  -webkit-mask-composite: xor;
+          mask:
+    linear-gradient(#000, #000) content-box,
+    linear-gradient(#000, #000);
+          mask-composite: exclude;
+  box-sizing: border-box;
+}
+.spcard__edge::before {
+  content: "";
+  position: absolute;
+  inset: -120%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    transparent 195deg,
+    oklch(86% 0.16 200 / 0.95) 230deg,
+    oklch(70% 0.15 210 / 0.9) 248deg,
+    oklch(86% 0.16 200 / 0.95) 266deg,
+    transparent 300deg,
+    transparent 360deg
+  );
+  animation: sweep 7.2s linear infinite;
+  mix-blend-mode: screen;
+  opacity: 0.95;
+  filter: drop-shadow(0 0 6px oklch(86% 0.16 200 / 0.45));
+}
+.spcard__edge::after {
+  content: none;
+}
+@keyframes sweep {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* 进度条（右下） */
+.spiral-progress {
+  position: absolute;
+  bottom: 32px;
+  right: clamp(24px, 4vw, 80px);
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: var(--text-2);
+}
+.spiral-progress__k {
+  font-size: 0.64rem;
+  letter-spacing: 0.2em;
+}
+.spiral-progress__track {
+  width: 180px;
+  height: 2px;
+  background: var(--line-soft);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.spiral-progress__bar {
+  height: 100%;
+  width: 100%;
+  transform-origin: left;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  box-shadow: 0 0 10px var(--accent-glow);
+}
+.spiral-progress__v {
+  font-size: 0.7rem;
+  color: var(--text-1);
+  min-width: 40px;
+  text-align: right;
+}
+
+@media (max-width: 980px) {
+  .spiral-stage {
+    perspective: 2600px;
+  }
+  .spcard {
+    width: clamp(150px, 36vw, 200px);
+  }
+  .spiral-progress {
+    bottom: 20px;
+    right: 20px;
+    left: 20px;
+    justify-content: space-between;
+  }
+  .spiral-progress__track {
+    flex: 1;
+  }
+  .spiral-stage.is-static .spiral-stage__world {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 560px) {
+  .spiral-stage {
+    perspective: 1800px;
+  }
+  .spcard {
+    width: clamp(130px, 50vw, 170px);
+  }
+  .spiral-section {
+    padding-top: 48px;
+  }
+  .spiral-stage.is-static .spiral-stage__world {
+    grid-template-columns: 1fr;
+  }
+}

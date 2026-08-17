@@ -1,0 +1,12 @@
+node_modules
+dist
+dist-ssr
+*.local
+.DS_Store
+.vite
+
+# 环境内部目录（Trae toolhost 工具，非项目代码）
+.tools/
+
+# 根目录临时大文件（>50MB，非项目必需，忽略避免 GitHub 警告）
+1e10c10fccfd59cf01d9d0b2daafef8e.mp4

@@ -1,0 +1,113 @@
+/* === Shared buttons & primitives === */
+.mono {
+  font-family: var(--font-mono);
+  letter-spacing: 0.04em;
+}
+
+.arr {
+  font-style: normal;
+  transition: transform 0.4s var(--ease);
+  display: inline-block;
+}
+
+.btn {
+  --btn-py: 14px;
+  --btn-px: 22px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: var(--btn-py) var(--btn-px);
+  border-radius: 100px;
+  font-size: 0.92rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  position: relative;
+  transition: transform 0.4s var(--ease), background 0.4s var(--ease),
+    color 0.4s var(--ease), border-color 0.4s var(--ease), box-shadow 0.4s var(--ease);
+  will-change: transform;
+}
+.btn:hover .arr {
+  transform: translateX(4px);
+}
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn--solid {
+  background: var(--accent);
+  color: oklch(14% 0.02 230);
+  box-shadow: 0 0 0 1px var(--accent), 0 14px 40px -16px var(--accent-glow);
+}
+.btn--solid:hover {
+  background: oklch(86% 0.12 195);
+  box-shadow: 0 0 0 1px oklch(86% 0.12 195), 0 18px 50px -14px var(--accent-glow);
+}
+
+.btn--ghost {
+  background: oklch(20% 0.018 230 / 0.5);
+  color: var(--text-0);
+  border: 1px solid var(--line);
+  backdrop-filter: blur(8px);
+}
+.btn--ghost:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.btn--lg {
+  --btn-py: 18px;
+  --btn-px: 30px;
+  font-size: 1rem;
+}
+
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  display: inline-block;
+  box-shadow: 0 0 10px var(--accent-glow);
+  animation: pulse 2.4s ease-in-out infinite;
+}
+.dot--good {
+  background: var(--good);
+  box-shadow: 0 0 10px oklch(78% 0.14 150 / 30%);
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 12px;
+  border-radius: 100px;
+  font-size: 0.8rem;
+  background: oklch(20% 0.018 230 / 0.6);
+  border: 1px solid var(--line-soft);
+  color: var(--text-1);
+  transition: border-color 0.3s var(--ease), color 0.3s var(--ease);
+}
+.chip:hover {
+  border-color: var(--accent);
+  color: var(--text-0);
+}
+
+.block-h {
+  font-size: 0.78rem;
+  font-family: var(--font-mono);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--text-2);
+  margin-bottom: 28px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.block-h::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--line-soft);
+}
