@@ -21,11 +21,22 @@ export default function Skills() {
     <section className="dot-grid section" style={{ padding: '120px 0' }}>
       <div className="container">
         {/* 头部标题 */}
-        <div className="reveal" style={{ maxWidth: 860, margin: '0 auto 64px', textAlign: 'center' }}>
+        <div
+          style={{
+            maxWidth: 860, margin: '0 auto 64px', textAlign: 'center',
+            animation: 'sectionFadeIn 600ms cubic-bezier(0.22, 1, 0.36, 1) both',
+          }}
+        >
           <p className="eyebrow" style={{ color: 'var(--orange)' }}>
             · CORE SKILLS · 核心能力 × 工具栈 ·
           </p>
-          <h2 className="h2 reveal-hero" style={{ color: 'var(--text-dark)', marginTop: 16 }}>
+          <h2
+            className="h2"
+            style={{
+              color: 'var(--text-dark)', marginTop: 16,
+              animation: 'heroTitleIn 700ms cubic-bezier(0.16, 1, 0.3, 1) 80ms both',
+            }}
+          >
             三重能力叠加&nbsp;
             <span
               style={{
@@ -57,7 +68,6 @@ export default function Skills() {
         >
           {/* 左: Tab 列 */}
           <div
-            className="reveal-left"
             style={{
               display: 'flex', flexDirection: 'column', gap: 8,
               padding: 8,
@@ -66,6 +76,7 @@ export default function Skills() {
               border: '1px solid var(--border-dark)',
               boxShadow: '0 4px 24px rgba(0,0,0,0.4)',
               position: 'sticky', top: 90,
+              animation: 'expSlideIn 600ms cubic-bezier(0.22, 1, 0.36, 1) 120ms both',
             }}
           >
             {personas.map(ps => (

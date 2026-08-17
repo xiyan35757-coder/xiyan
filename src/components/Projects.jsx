@@ -26,9 +26,21 @@ export default function Projects() {
   return (
     <section id="projects" className="section" style={{ background: 'var(--bg-dark)' }}>
       <div style={{ maxWidth: '1200px', margin: '0 auto', paddingLeft: 'var(--pad-x)', paddingRight: 'var(--pad-x)' }}>
-        <div className="text-center reveal" style={{ marginBottom: '56px' }}>
+        <div
+          className="text-center"
+          style={{
+            marginBottom: '56px',
+            animation: 'sectionFadeIn 600ms cubic-bezier(0.22, 1, 0.36, 1) both',
+          }}
+        >
           <span className="eyebrow eyebrow-light">KEY PROJECTS · STAR METHOD</span>
-          <h2 className="h2 reveal-hero" style={{ color: 'var(--text-light)', marginTop: '12px' }}>
+          <h2
+            className="h2"
+            style={{
+              color: 'var(--text-light)', marginTop: '12px',
+              animation: 'heroTitleIn 700ms cubic-bezier(0.16, 1, 0.3, 1) 80ms both',
+            }}
+          >
             代表性项目 · 结果驱动
           </h2>
           <p className="zh-body" style={{ color: 'var(--text-light-2)', marginTop: '16px', fontSize: '15px', maxWidth: '640px', margin: '16px auto 0' }}>
@@ -46,10 +58,11 @@ export default function Projects() {
           {projects.map((p, idx) => (
             <article
               key={idx}
-              className={`card-dark relative reveal-scale reveal-delay-${idx + 1}`}
+              className="card-dark relative"
               style={{
                 borderRadius: 'var(--r-xl)',
-                padding: '28px'
+                padding: '28px',
+                animation: `sectionScaleIn 600ms cubic-bezier(0.22, 1, 0.36, 1) ${idx * 120}ms both`,
               }}
             >
               <div className="flex items-center justify-between gap-2 flex-wrap">

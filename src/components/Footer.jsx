@@ -34,9 +34,21 @@ export default function Footer() {
   return (
     <section id="footer" className="section" style={{ background: 'var(--bg-dark)' }}>
       <div style={{ maxWidth: '1200px', margin: '0 auto', paddingLeft: 'var(--pad-x)', paddingRight: 'var(--pad-x)' }}>
-        <div className="text-center reveal" style={{ marginBottom: '48px' }}>
+        <div
+          className="text-center"
+          style={{
+            marginBottom: '48px',
+            animation: 'sectionFadeIn 600ms cubic-bezier(0.22, 1, 0.36, 1) both',
+          }}
+        >
           <span className="eyebrow eyebrow-light">FAQ · ABOUT ME</span>
-          <h2 className="h2 reveal-hero" style={{ color: 'var(--text-light)', marginTop: '12px' }}>
+          <h2
+            className="h2"
+            style={{
+              color: 'var(--text-light)', marginTop: '12px',
+              animation: 'heroTitleIn 700ms cubic-bezier(0.16, 1, 0.3, 1) 80ms both',
+            }}
+          >
             也许你想知道...
           </h2>
         </div>
@@ -104,7 +116,13 @@ export default function Footer() {
               }}
             />
 
-            <div className="relative z-10 text-center reveal-hero" style={{ padding: 'clamp(40px, 8vw, 56px)' }}>
+            <div
+              className="relative z-10 text-center"
+              style={{
+                padding: 'clamp(40px, 8vw, 56px)',
+                animation: 'heroTitleIn 700ms cubic-bezier(0.16, 1, 0.3, 1) 120ms both',
+              }}
+            >
               <h2
                 className="h2"
                 style={{

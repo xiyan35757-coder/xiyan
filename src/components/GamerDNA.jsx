@@ -72,14 +72,20 @@ export default function GamerDNA() {
     <section className="section" style={{ background: 'var(--bg-dark)', padding: '120px 0' }}>
       <div className="container">
         {/* 顶部标题 */}
-        <div className="reveal" style={{ maxWidth: 860, margin: '0 auto 56px', textAlign: 'center' }}>
+        <div
+          style={{
+            maxWidth: 860, margin: '0 auto 56px', textAlign: 'center',
+            animation: 'sectionFadeIn 600ms cubic-bezier(0.22, 1, 0.36, 1) both',
+          }}
+        >
           <p className="eyebrow eyebrow-light" style={{ color: 'var(--orange)' }}>
             · GAMER DNA · 游戏阅历地图 ·
           </p>
           <h2
-            className="h2 reveal-hero"
+            className="h2"
             style={{
               color: 'var(--text-light)', margin: '16px auto 14px',
+              animation: 'heroTitleIn 700ms cubic-bezier(0.16, 1, 0.3, 1) 80ms both',
             }}
           >
             2000+ 小时跨品类&nbsp;
@@ -103,13 +109,14 @@ export default function GamerDNA() {
 
         {/* Tab 切换行 */}
         <div
-          className="tab-row tab-row-dark reveal-scale reveal-delay-1"
+          className="tab-row tab-row-dark"
           style={{
             justifyContent: 'center', marginBottom: 40,
             padding: 6,
             background: 'rgba(255,255,255,0.03)',
             border: '1px solid var(--border-dark)',
             width: 'fit-content', marginLeft: 'auto', marginRight: 'auto',
+            animation: 'sectionScaleIn 600ms cubic-bezier(0.22, 1, 0.36, 1) 120ms both',
           }}
         >
           {gamerDNATabs.map(t => (
