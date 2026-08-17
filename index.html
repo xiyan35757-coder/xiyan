@@ -11,7 +11,6 @@
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
 
-    <!-- trigger CF Pages rebuild -->
     <title>谢茂宇 · 游戏策划 / 发行运营作品集</title>
 
     <!-- DNS + 连接预热:首屏关键资源域名尽早完成握手 -->
@@ -33,6 +32,11 @@
     <link rel="preload" as="image" href="https://shared.steamstatic.com/store_item_assets/steam/apps/2211020/library_hero.jpg" />
     <link rel="preload" as="image" href="/images/games/genshin.jpg" />
     <link rel="preload" as="image" href="https://shared.steamstatic.com/store_item_assets/steam/apps/730/library_hero.jpg" />
+
+    <!-- ====== 安全覆盖:强制 contain:content, 防止 CSS 里 contain:strict 导致模块塌陷 ====== -->
+    <style>
+      .dot-grid, .dot-grid-dark { contain: content !important; }
+    </style>
   </head>
   <body>
     <div id="root"></div>
