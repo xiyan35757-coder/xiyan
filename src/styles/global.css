@@ -104,16 +104,20 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   background-attachment: fixed;          /* 点阵跟随视口,滚动时无需整层重绘 */
   transform: translateZ(0);              /* 独立合成层, 避免被遮罩/光晕重绘连带 */
   will-change: auto;
-  contain: strict;
+  /* ⚠️ 不能用 contain:strict! 它包含 size containment,
+     会让 section 忽略内容高度导致塌陷 + paint containment 让溢出内容不可见。
+     Skills/Experience 的 section 用了 dot-grid 类, 之前用 strict 导致整个模块看不见。
+     改用 content (layout paint style), 不含 size, 安全。 */
+  contain: content;
 }
 .dot-grid-dark {
   background-color: var(--bg-dark);
   background-image:
-    radial-gradient(circle, rgba(250,250,250,0.05) 1px, transparent 1px);
+    radial-gradient(circle, rgba(250,250,255,0.05) 1px, transparent 1px);
   background-size: 24px 24px;
   background-attachment: fixed;
   transform: translateZ(0);
-  contain: strict;
+  contain: content;
 }
 
 /* ====== 合成层隔离: backdrop-filter / blur 的元素必须独立层 ====== */
