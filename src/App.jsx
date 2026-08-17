@@ -118,22 +118,22 @@ export default function App() {
 
       {/* ========= 3.5 标签条带 (独立于视频之外，不挡字幕) ========= */}
       <div
-        className="reveal-fade"
         style={{
           background: '#000000',
           padding: '24px 16px',
           borderTop: '1px solid var(--border-dark)',
           display: 'flex', flexWrap: 'wrap',
           gap: 8, justifyContent: 'center',
+          animation: 'sectionFadeIn 700ms cubic-bezier(0.22, 1, 0.36, 1) both',
         }}
       >
         {['游戏策划', '用户洞察', '数据分析', '活动策划', '项目管理', 'AI工具应用', 'CF校园代理人', 'ENFJ', 'CET-4'].map((t, i) => (
           <span
             key={t}
-            className="pill reveal-scale"
+            className="pill"
             style={{
               fontSize: 12.5, padding: '5px 13px',
-              transitionDelay: `${0.1 + i * 0.06}s`,
+              animation: `heroTitleIn 500ms cubic-bezier(0.22, 1, 0.36, 1) ${120 + i * 60}ms both`,
             }}
           >
             {t}
@@ -142,22 +142,34 @@ export default function App() {
       </div>
 
       {/* ========= 4. Gamer DNA (Melius Showcase: 5Tab 游戏品类画布展示) ========= */}
-      <section id="gamer-dna" className="reveal">
+      <section
+        id="gamer-dna"
+        style={{ animation: 'sectionFadeIn 800ms cubic-bezier(0.22, 1, 0.36, 1) both' }}
+      >
         <GamerDNA />
       </section>
 
       {/* ========= 5. Skills (Melius Personas: 核心能力x工具栈 + 4个身份Tab) ========= */}
-      <section id="skills" className="reveal-scale">
+      <section
+        id="skills"
+        style={{ animation: 'sectionFadeIn 800ms cubic-bezier(0.22, 1, 0.36, 1) both' }}
+      >
         <Skills />
       </section>
 
       {/* ========= 6. Key Projects (STAR 方法四象限卡片) ========= */}
-      <section id="projects" className="reveal">
+      <section
+        id="projects"
+        style={{ animation: 'sectionFadeIn 800ms cubic-bezier(0.22, 1, 0.36, 1) both' }}
+      >
         <Projects />
       </section>
 
       {/* ========= 7. Experience + Education (实习 × 教育背景) ========= */}
-      <section id="experience" className="reveal">
+      <section
+        id="experience"
+        style={{ animation: 'sectionFadeIn 800ms cubic-bezier(0.22, 1, 0.36, 1) both' }}
+      >
         <Experience />
       </section>
 

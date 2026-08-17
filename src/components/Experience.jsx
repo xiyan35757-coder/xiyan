@@ -26,9 +26,22 @@ export default function Experience() {
   return (
     <section id="experience" className="section dot-grid">
       <div style={{ maxWidth: '1200px', margin: '0 auto', paddingLeft: 'var(--pad-x)', paddingRight: 'var(--pad-x)' }}>
-        <div className="text-center reveal" style={{ marginBottom: '56px' }}>
+        <div
+          className="text-center"
+          style={{
+            marginBottom: '56px',
+            animation: 'sectionFadeIn 600ms cubic-bezier(0.22, 1, 0.36, 1) both',
+          }}
+        >
           <span className="eyebrow">EXPERIENCE · EDUCATION</span>
-          <h2 className="h2 reveal-hero" style={{ color: 'var(--text-dark)', marginTop: '12px' }}>
+          <h2
+            className="h2"
+            style={{
+              color: 'var(--text-dark)',
+              marginTop: '12px',
+              animation: 'heroTitleIn 700ms cubic-bezier(0.16, 1, 0.3, 1) 100ms both',
+            }}
+          >
             实习 × 教育背景
           </h2>
         </div>
@@ -44,8 +57,11 @@ export default function Experience() {
             {internships.map((exp, idx) => (
               <article
                 key={idx}
-                className={`card reveal-left reveal-delay-${idx + 1}`}
-                style={{ padding: '28px' }}
+                className="card"
+                style={{
+                  padding: '28px',
+                  animation: `expSlideIn 600ms cubic-bezier(0.22, 1, 0.36, 1) ${idx * 120}ms both`,
+                }}
               >
                 <div className="flex items-start justify-between gap-4" style={{ flexWrap: 'wrap' }}>
                   <div>
@@ -110,7 +126,13 @@ export default function Experience() {
           </div>
 
           <div className="flex" style={{ flexDirection: 'column', gap: '24px' }}>
-            <article className="card reveal-right reveal-delay-1" style={{ padding: '28px' }}>
+            <article
+              className="card"
+              style={{
+                padding: '28px',
+                animation: 'expSlideInRight 600ms cubic-bezier(0.22, 1, 0.36, 1) 0ms both',
+              }}
+            >
               <h3
                 style={{
                   fontFamily: 'var(--font-serif), var(--font-zh-serif)',
@@ -158,7 +180,13 @@ export default function Experience() {
               </div>
             </article>
 
-            <article className="card reveal-right reveal-delay-2" style={{ padding: '28px' }}>
+            <article
+              className="card"
+              style={{
+                padding: '28px',
+                animation: 'expSlideInRight 600ms cubic-bezier(0.22, 1, 0.36, 1) 120ms both',
+              }}
+            >
               <h3
                 style={{
                   fontFamily: 'var(--font-serif), var(--font-zh-serif)',
