@@ -33,12 +33,16 @@ export default function Footer() {
 
   return (
     <section id="footer" className="section" style={{ background: 'var(--bg-dark)' }}>
+      {/* 锚点: App.jsx 移除了外层 <section id="contact">, 这里补上, 保证顶部"查看联系方式"能跳转 */}
+      <span id="contact" aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0 }} />
       <div style={{ maxWidth: '1200px', margin: '0 auto', paddingLeft: 'var(--pad-x)', paddingRight: 'var(--pad-x)' }}>
         <div
           className="text-center"
           style={{
             marginBottom: '48px',
-            animation: 'sectionFadeIn 600ms cubic-bezier(0.22, 1, 0.36, 1) both',
+            opacity: 1,
+            visibility: 'visible',
+            animation: 'sectionFadeIn 600ms cubic-bezier(0.22, 1, 0.36, 1) forwards',
           }}
         >
           <span className="eyebrow eyebrow-light">FAQ · ABOUT ME</span>
@@ -46,7 +50,9 @@ export default function Footer() {
             className="h2"
             style={{
               color: 'var(--text-light)', marginTop: '12px',
-              animation: 'heroTitleIn 700ms cubic-bezier(0.16, 1, 0.3, 1) 80ms both',
+              opacity: 1,
+              visibility: 'visible',
+              animation: 'heroTitleIn 700ms cubic-bezier(0.16, 1, 0.3, 1) 80ms forwards',
             }}
           >
             也许你想知道...

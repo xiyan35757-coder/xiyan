@@ -24,7 +24,8 @@ export default function Skills() {
         <div
           style={{
             maxWidth: 860, margin: '0 auto 64px', textAlign: 'center',
-            animation: 'sectionFadeIn 600ms cubic-bezier(0.22, 1, 0.36, 1) both',
+            opacity: 1, visibility: 'visible',
+            animation: 'sectionFadeIn 600ms cubic-bezier(0.22, 1, 0.36, 1) forwards',
           }}
         >
           <p className="eyebrow" style={{ color: 'var(--orange)' }}>
@@ -34,7 +35,8 @@ export default function Skills() {
             className="h2"
             style={{
               color: 'var(--text-dark)', marginTop: 16,
-              animation: 'heroTitleIn 700ms cubic-bezier(0.16, 1, 0.3, 1) 80ms both',
+              opacity: 1, visibility: 'visible',
+              animation: 'heroTitleIn 700ms cubic-bezier(0.16, 1, 0.3, 1) 80ms forwards',
             }}
           >
             三重能力叠加&nbsp;
@@ -76,7 +78,8 @@ export default function Skills() {
               border: '1px solid var(--border-dark)',
               boxShadow: '0 4px 24px rgba(0,0,0,0.4)',
               position: 'sticky', top: 90,
-              animation: 'expSlideIn 600ms cubic-bezier(0.22, 1, 0.36, 1) 120ms both',
+              opacity: 1, visibility: 'visible',
+              animation: 'expSlideIn 600ms cubic-bezier(0.22, 1, 0.36, 1) 120ms forwards',
             }}
           >
             {personas.map(ps => (
@@ -121,7 +124,8 @@ export default function Skills() {
             className="card"
             style={{
               overflow: 'hidden',
-              animation: 'skillsFadeSlide 600ms cubic-bezier(0.22, 1, 0.36, 1) both',
+              opacity: 1, visibility: 'visible',
+              animation: 'skillsFadeSlide 600ms cubic-bezier(0.22, 1, 0.36, 1) forwards',
             }}
           >
             <style>{`
@@ -268,7 +272,8 @@ export default function Skills() {
                     gridTemplateColumns: '52px 1fr',
                     gap: 18,
                     alignItems: 'center',
-                    animation: `skillsFadeSlide 500ms ease ${i * 80}ms both`,
+                    opacity: 1, visibility: 'visible',
+                    animation: `skillsFadeSlide 500ms ease ${i * 80}ms forwards`,
                   }}
                 >
                   <div

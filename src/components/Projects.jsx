@@ -30,7 +30,9 @@ export default function Projects() {
           className="text-center"
           style={{
             marginBottom: '56px',
-            animation: 'sectionFadeIn 600ms cubic-bezier(0.22, 1, 0.36, 1) both',
+            opacity: 1,
+            visibility: 'visible',
+            animation: 'sectionFadeIn 600ms cubic-bezier(0.22, 1, 0.36, 1) forwards',
           }}
         >
           <span className="eyebrow eyebrow-light">KEY PROJECTS · STAR METHOD</span>
@@ -38,7 +40,9 @@ export default function Projects() {
             className="h2"
             style={{
               color: 'var(--text-light)', marginTop: '12px',
-              animation: 'heroTitleIn 700ms cubic-bezier(0.16, 1, 0.3, 1) 80ms both',
+              opacity: 1,
+              visibility: 'visible',
+              animation: 'heroTitleIn 700ms cubic-bezier(0.16, 1, 0.3, 1) 80ms forwards',
             }}
           >
             代表性项目 · 结果驱动
@@ -62,7 +66,9 @@ export default function Projects() {
               style={{
                 borderRadius: 'var(--r-xl)',
                 padding: '28px',
-                animation: `sectionScaleIn 600ms cubic-bezier(0.22, 1, 0.36, 1) ${idx * 120}ms both`,
+                opacity: 1,
+                visibility: 'visible',
+                animation: `sectionScaleIn 600ms cubic-bezier(0.22, 1, 0.36, 1) ${idx * 120}ms forwards`,
               }}
             >
               <div className="flex items-center justify-between gap-2 flex-wrap">

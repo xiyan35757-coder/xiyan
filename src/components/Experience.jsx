@@ -30,7 +30,9 @@ export default function Experience() {
           className="text-center"
           style={{
             marginBottom: '56px',
-            animation: 'sectionFadeIn 600ms cubic-bezier(0.22, 1, 0.36, 1) both',
+            opacity: 1,
+            visibility: 'visible',
+            animation: 'sectionFadeIn 600ms cubic-bezier(0.22, 1, 0.36, 1) forwards',
           }}
         >
           <span className="eyebrow">EXPERIENCE · EDUCATION</span>
@@ -39,7 +41,9 @@ export default function Experience() {
             style={{
               color: 'var(--text-dark)',
               marginTop: '12px',
-              animation: 'heroTitleIn 700ms cubic-bezier(0.16, 1, 0.3, 1) 100ms both',
+              opacity: 1,
+              visibility: 'visible',
+              animation: 'heroTitleIn 700ms cubic-bezier(0.16, 1, 0.3, 1) 100ms forwards',
             }}
           >
             实习 × 教育背景
@@ -53,14 +57,16 @@ export default function Experience() {
             gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 520px), 1fr))'
           }}
         >
-          <div className="flex" style={{ flexDirection: 'column', gap: '24px' }}>
+          <div className="flex" style={{ flexDirection: 'column', gap: '24px', opacity: 1, visibility: 'visible' }}>
             {internships.map((exp, idx) => (
               <article
                 key={idx}
                 className="card"
                 style={{
                   padding: '28px',
-                  animation: `expSlideIn 600ms cubic-bezier(0.22, 1, 0.36, 1) ${idx * 120}ms both`,
+                  opacity: 1,
+                  visibility: 'visible',
+                  animation: `expSlideIn 600ms cubic-bezier(0.22, 1, 0.36, 1) ${idx * 120}ms forwards`,
                 }}
               >
                 <div className="flex items-start justify-between gap-4" style={{ flexWrap: 'wrap' }}>
@@ -125,12 +131,14 @@ export default function Experience() {
             ))}
           </div>
 
-          <div className="flex" style={{ flexDirection: 'column', gap: '24px' }}>
+          <div className="flex" style={{ flexDirection: 'column', gap: '24px', opacity: 1, visibility: 'visible' }}>
             <article
               className="card"
               style={{
                 padding: '28px',
-                animation: 'expSlideInRight 600ms cubic-bezier(0.22, 1, 0.36, 1) 0ms both',
+                opacity: 1,
+                visibility: 'visible',
+                animation: 'expSlideInRight 600ms cubic-bezier(0.22, 1, 0.36, 1) 0ms forwards',
               }}
             >
               <h3
@@ -184,7 +192,9 @@ export default function Experience() {
               className="card"
               style={{
                 padding: '28px',
-                animation: 'expSlideInRight 600ms cubic-bezier(0.22, 1, 0.36, 1) 120ms both',
+                opacity: 1,
+                visibility: 'visible',
+                animation: 'expSlideInRight 600ms cubic-bezier(0.22, 1, 0.36, 1) 120ms forwards',
               }}
             >
               <h3

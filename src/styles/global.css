@@ -333,6 +333,16 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   to   { opacity: 1; transform: scale(1); }
 }
 @media (prefers-reduced-motion: reduce) {
+  /* 减少动画的用户: 直接取消所有入场动画,强制内容可见,绝不透明 */
+  *, *::before, *::after {
+    animation: none !important;
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    opacity: 1 !important;
+    transform: none !important;
+    visibility: visible !important;
+    filter: none !important;
+  }
   .acc-item { animation: none !important; }
 }
 

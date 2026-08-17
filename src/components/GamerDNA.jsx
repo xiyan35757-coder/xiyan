@@ -75,7 +75,8 @@ export default function GamerDNA() {
         <div
           style={{
             maxWidth: 860, margin: '0 auto 56px', textAlign: 'center',
-            animation: 'sectionFadeIn 600ms cubic-bezier(0.22, 1, 0.36, 1) both',
+            opacity: 1, visibility: 'visible',
+            animation: 'sectionFadeIn 600ms cubic-bezier(0.22, 1, 0.36, 1) forwards',
           }}
         >
           <p className="eyebrow eyebrow-light" style={{ color: 'var(--orange)' }}>
@@ -85,7 +86,8 @@ export default function GamerDNA() {
             className="h2"
             style={{
               color: 'var(--text-light)', margin: '16px auto 14px',
-              animation: 'heroTitleIn 700ms cubic-bezier(0.16, 1, 0.3, 1) 80ms both',
+              opacity: 1, visibility: 'visible',
+              animation: 'heroTitleIn 700ms cubic-bezier(0.16, 1, 0.3, 1) 80ms forwards',
             }}
           >
             2000+ 小时跨品类&nbsp;
@@ -116,7 +118,8 @@ export default function GamerDNA() {
             background: 'rgba(255,255,255,0.03)',
             border: '1px solid var(--border-dark)',
             width: 'fit-content', marginLeft: 'auto', marginRight: 'auto',
-            animation: 'sectionScaleIn 600ms cubic-bezier(0.22, 1, 0.36, 1) 120ms both',
+            opacity: 1, visibility: 'visible',
+            animation: 'sectionScaleIn 600ms cubic-bezier(0.22, 1, 0.36, 1) 120ms forwards',
           }}
         >
           {gamerDNATabs.map(t => (
