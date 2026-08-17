@@ -172,7 +172,7 @@ export default function SpiralCards() {
                     height="500"
                     onError={(e) => {
                       e.currentTarget.src =
-                        'https://cdn.cloudflare.steamstatic.com/store_item_assets/steam/apps/1172470/library_hero.jpg'
+                        'https://shared.steamstatic.com/store_item_assets/steam/apps/1172470/library_hero.jpg'
                     }}
                   />
                   <div className="spcard__img-veil" />

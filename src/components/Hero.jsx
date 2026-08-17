@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { Sparkles, Volume2, VolumeX, Play } from 'lucide-react'
-import { heroGameStrip, picStrip } from '../data/games'
+import { heroGameStrip, picStrip, picHero } from '../data/games'
 
 /* =========================================================
  * Hero.jsx — 性能优化版
@@ -511,7 +511,7 @@ function GameStripCard({ img, label, cat, isActive, onEnter, onLeave, style, ind
         onLoad={() => setLoaded(true)}
         onError={(e) => {
           e.currentTarget.src =
-            'https://cdn.cloudflare.steamstatic.com/store_item_assets/steam/apps/1172470/library_hero.jpg'
+            'https://shared.steamstatic.com/store_item_assets/steam/apps/1172470/library_hero.jpg'
         }}
         style={{
           width: '100%', height: '100%',

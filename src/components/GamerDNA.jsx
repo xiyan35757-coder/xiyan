@@ -160,7 +160,7 @@ export default function GamerDNA() {
             referrerPolicy="no-referrer"
             onError={(e) => {
               e.currentTarget.src =
-                'https://cdn.cloudflare.steamstatic.com/store_item_assets/steam/apps/2410680/library_hero.jpg'
+                'https://shared.steamstatic.com/store_item_assets/steam/apps/2410680/library_hero.jpg'
             }}
             style={{
               position: 'absolute', inset: 0,
@@ -382,7 +382,7 @@ function NodeCard({ img, title, tag, style }) {
           onLoad={() => setLoaded(true)}
           onError={(e) => {
             e.currentTarget.src =
-              'https://cdn.cloudflare.steamstatic.com/store_item_assets/steam/apps/2410680/capsule_616x353.jpg'
+              'https://shared.steamstatic.com/store_item_assets/steam/apps/2410680/capsule_616x353.jpg'
           }}
           style={{
             width: '100%', height: '100%',
