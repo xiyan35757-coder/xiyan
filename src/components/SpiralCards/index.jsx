@@ -162,7 +162,19 @@ export default function SpiralCards() {
               >
                 <div className="spcard__glass" />
                 <div className="spcard__img">
-                  <img src={g.image} alt={`${g.nameZh} ${g.name}`} loading="lazy" />
+                  <img
+                    src={g.image}
+                    alt={`${g.nameZh} ${g.name}`}
+                    loading="lazy"
+                    decoding="async"
+                    referrerPolicy="no-referrer"
+                    width="400"
+                    height="500"
+                    onError={(e) => {
+                      e.currentTarget.src =
+                        'https://cdn.cloudflare.steamstatic.com/store_item_assets/steam/apps/1172470/library_hero.jpg'
+                    }}
+                  />
                   <div className="spcard__img-veil" />
                 </div>
                 <div className="spcard__body">

@@ -186,14 +186,40 @@ export default function Hero() {
       className="section"
       style={{ minHeight: '100vh', paddingTop: 0, paddingBottom: 0, position: 'relative', overflow: 'hidden', backgroundColor: '#000000' }}
     >
-      {/* ====== 背景视频: preload=metadata 先不缓冲 60MB, 等 window.load 再触发 ====== */}
+      {/* ====== 背景视频: preload=metadata 先不缓冲 60MB, 等 window.load 再触发
+                 视频 58MB > GitHub/CF Pages 限制, 部署后会 404, 因此:
+                 1) poster 提供静态 16:9 官方游戏图做即时背景(不会黑屏)
+                 2) onerror 自动降级, 隐藏 video 让 poster 层保留, 不卡顿 ====== */}
       <video
         ref={videoRef}
         loop
         playsInline
         muted
         preload="metadata"
+        poster={picHero('bg-moba')}
         aria-hidden
+        onError={(e) => {
+          // 视频 404 / 跨域 / 加载失败: 降级为 poster 静态背景, 避免卡顿/黑屏
+          const v = e.currentTarget
+          v.style.visibility = 'hidden'
+          v.style.display = 'none'
+          // 把 poster 作为静态图渲染到父容器背景上
+          const parent = v.parentElement
+          if (parent) {
+            const bgLayer = document.createElement('div')
+            bgLayer.setAttribute('aria-hidden', 'true')
+            Object.assign(bgLayer.style, {
+              position: 'absolute', inset: 0,
+              zIndex: 0,
+              backgroundImage: `url(${v.poster})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              transform: 'translateZ(0)',
+              pointerEvents: 'none',
+            })
+            parent.insertBefore(bgLayer, v.nextSibling)
+          }
+        }}
         style={{
           position: 'absolute', inset: 0,
           width: '100%', height: '100%',
@@ -478,13 +504,14 @@ function GameStripCard({ img, label, cat, isActive, onEnter, onLeave, style, ind
         loading={loading}
         fetchpriority={fp}
         decoding="async"
+        referrerPolicy="no-referrer"
         width="200"
         height="250"
         className={`fade-img ${loaded ? 'is-loaded' : ''}`}
         onLoad={() => setLoaded(true)}
         onError={(e) => {
           e.currentTarget.src =
-            'https://shared.steamstatic.com/store_item_assets/steam/apps/1172470/library_hero.jpg'
+            'https://cdn.cloudflare.steamstatic.com/store_item_assets/steam/apps/1172470/library_hero.jpg'
         }}
         style={{
           width: '100%', height: '100%',

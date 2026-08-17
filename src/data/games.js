@@ -201,7 +201,7 @@ const LIB   = 'library_hero.jpg'
 const HDR   = 'header.jpg'
 const CAP   = 'capsule_616x353.jpg'
 const SMCAP = 'capsule_sm_120.jpg'
-const SHARED_BASE = 'https://shared.steamstatic.com/store_item_assets/steam/apps'
+const SHARED_BASE = 'https://cdn.cloudflare.steamstatic.com/store_item_assets/steam/apps'
 
 const sharedUrl = (appId, res) => `${SHARED_BASE}/${appId}/${res}`
 

@@ -129,9 +129,10 @@ export default function Skills() {
                 height="900"
                 loading="lazy"
                 decoding="async"
+                referrerPolicy="no-referrer"
                 onError={(e) => {
                   e.currentTarget.src =
-                    'https://shared.steamstatic.com/store_item_assets/steam/apps/2410680/library_hero.jpg'
+                    'https://cdn.cloudflare.steamstatic.com/store_item_assets/steam/apps/2410680/library_hero.jpg'
                 }}
                 style={{
                   width: '100%', height: 'auto', aspectRatio: '16 / 9',
