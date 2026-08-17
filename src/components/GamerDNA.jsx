@@ -69,7 +69,7 @@ export default function GamerDNA() {
   const layout = TAB_LAYOUT[active.id] || TAB_LAYOUT.moba
 
   return (
-    <section className="section" style={{ background: 'var(--bg-dark)', padding: '120px 0' }}>
+    <section id="gamer-dna" className="section" style={{ background: 'var(--bg-dark)', padding: '120px 0' }}>
       <div className="container">
         {/* 顶部标题 */}
         <div

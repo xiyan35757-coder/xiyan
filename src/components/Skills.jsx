@@ -18,7 +18,7 @@ export default function Skills() {
   const p = personas.find(x => x.id === pid) || personas[0]
 
   return (
-    <section className="dot-grid section" style={{ padding: '120px 0' }}>
+    <section id="skills" className="dot-grid section" style={{ padding: '120px 0' }}>
       <div className="container">
         {/* 头部标题 */}
         <div
