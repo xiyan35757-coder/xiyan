@@ -33,8 +33,20 @@ export default function Footer() {
 
   return (
     <section id="footer" className="section" style={{ background: 'var(--bg-dark)' }}>
-      {/* 锚点: App.jsx 移除了外层 <section id="contact">, 这里补上, 保证顶部"查看联系方式"能跳转 */}
-      <span id="contact" aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0 }} />
+      {/* 锚点: 保证顶部"查看联系方式"和Navbar"联系我"能平滑滚动到页面底部 */}
+      <a
+        id="contact"
+        aria-hidden="true"
+        style={{
+          position: 'relative',
+          display: 'block',
+          height: '1px',
+          width: '1px',
+          overflow: 'hidden',
+          top: '0',
+          left: '0',
+        }}
+      />
       <div style={{ maxWidth: '1200px', margin: '0 auto', paddingLeft: 'var(--pad-x)', paddingRight: 'var(--pad-x)' }}>
         <div
           className="text-center"

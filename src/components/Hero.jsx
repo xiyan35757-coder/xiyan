@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { Sparkles, Volume2, VolumeX, Play } from 'lucide-react'
+import { Sparkles } from 'lucide-react'
 import { heroGameStrip, picStrip, picHero } from '../data/games'
+import MusicPlayer from './MusicPlayer'
 
 /* =========================================================
  * Hero.jsx — 性能优化版
@@ -22,16 +23,12 @@ export default function Hero() {
   const videoRef   = useRef(null)
   const [mounted, setMounted] = useState(false)
   const [hoverIdx, setHoverIdx] = useState(-1)
-  const [audioState, setAudioState] = useState('muted')
-  const [showCtrl, setShowCtrl] = useState(true)
   const extraRot   = useRef(0)
   const autoRot    = useRef(0)
   const lastTs     = useRef(performance.now())
   const rafId      = useRef(0)
   const scrollRaf  = useRef(0)            // scroll 节流 rAF id
-  const scrollPending = useRef(false)     // scroll 节流挂起标志
   const rafRunning = useRef(false)        // 自动旋转循环是否正在跑
-  const userInteracted = useRef(false)
 
   /* ---------- 1) 入场 stagger ---------- */
   useEffect(() => {
@@ -39,33 +36,7 @@ export default function Hero() {
     return () => clearTimeout(t)
   }, [])
 
-  /* ---------- 2) Scroll-driven 旋转 + 声音按钮显隐 (加 rAF 节流) ---------- */
-  useEffect(() => {
-    const compute = () => {
-      scrollPending.current = false
-      const el = sectionRef.current
-      if (!el) return
-      const rect = el.getBoundingClientRect()
-      const vh   = window.innerHeight || 1
-      const prog = 1 - Math.max(0, Math.min(1, (rect.bottom - vh * 0.25) / (rect.height + vh * 0.5)))
-      extraRot.current = -22 + prog * 44
-      const visible = rect.bottom > vh * 0.15 && rect.top < vh * 0.85
-      setShowCtrl(visible)
-    }
-    const onScroll = () => {
-      if (scrollPending.current) return      // 一帧只排一次 compute
-      scrollPending.current = true
-      scrollRaf.current = requestAnimationFrame(compute)
-    }
-    window.addEventListener('scroll', onScroll, { passive: true })
-    compute()   // 首帧同步定位,避免按钮闪一下才隐
-    return () => {
-      window.removeEventListener('scroll', onScroll)
-      if (scrollRaf.current) cancelAnimationFrame(scrollRaf.current)
-    }
-  }, [])
-
-  /* ---------- 3) 视频初始化: 等 window.load 再加载 60MB 视频 ---------- */
+  /* ---------- 2) 视频初始化: 等 window.load 再加载视频 ---------- */
   useEffect(() => {
     const v = videoRef.current
     if (!v) return
@@ -91,48 +62,7 @@ export default function Hero() {
     }
   }, [])
 
-  /* ---------- 4) 首次用户交互后自动取消静音 ---------- */
-  useEffect(() => {
-    const unmute = () => {
-      if (userInteracted.current) return
-      userInteracted.current = true
-      const v = videoRef.current
-      if (v) {
-        v.muted = false
-        v.play().catch(() => {})
-      }
-      setAudioState('on')
-    }
-    window.addEventListener('click', unmute, { once: true })
-    window.addEventListener('scroll', unmute, { once: true, passive: true })
-    window.addEventListener('keydown', unmute, { once: true })
-    return () => {
-      window.removeEventListener('click', unmute)
-      window.removeEventListener('scroll', unmute)
-      window.removeEventListener('keydown', unmute)
-    }
-  }, [])
-
-  /* ---------- 5) 三态切换 ---------- */
-  const toggleAudio = () => {
-    const v = videoRef.current
-    if (!v) return
-    setAudioState(prev => {
-      const next = prev === 'on' ? 'muted' : prev === 'muted' ? 'paused' : 'on'
-      if (next === 'on') {
-        v.muted = false
-        v.play().catch(() => {})
-      } else if (next === 'muted') {
-        v.muted = true
-        if (v.paused) v.play().catch(() => {})
-      } else {
-        v.pause()
-      }
-      return next
-    })
-  }
-
-  /* ---------- 6) rAF 自动旋转 + visibilitychange 后台暂停 + reduced-motion 降级 ---------- */
+  /* ---------- 3) rAF 自动旋转 + visibilitychange 后台暂停 + reduced-motion 降级 ---------- */
   useEffect(() => {
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     if (reduce) return
@@ -423,55 +353,8 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* ====== 声音控制按钮 ====== */}
-      <button
-        onClick={toggleAudio}
-        aria-label={
-          audioState === 'on' ? '当前有声,点击静音'
-          : audioState === 'muted' ? '当前静音,点击暂停'
-          : '已暂停,点击恢复有声播放'
-        }
-        title={
-          audioState === 'on' ? '🔊 有声 (点击静音)'
-          : audioState === 'muted' ? '🔇 静音 (点击暂停)'
-          : '⏸ 已暂停 (点击恢复)'
-        }
-        onMouseEnter={(e) => {
-          e.currentTarget.style.borderColor = 'var(--orange)'
-          e.currentTarget.style.boxShadow = '0 0 18px rgba(240,78,35,0.45), 0 4px 20px rgba(0,0,0,0.4)'
-        }}
-        onMouseLeave={(e) => {
-          e.currentTarget.style.borderColor = ''
-          e.currentTarget.style.boxShadow = '0 4px 20px rgba(0,0,0,0.4)'
-        }}
-        style={{
-          position: 'fixed',
-          top: 112, right: 24,
-          width: 44, height: 44,
-          borderRadius: '50%',
-          background: 'rgba(20,20,20,0.82)',
-          border: '1px solid var(--border-dark)',
-          backdropFilter: 'blur(10px) saturate(1.4)',
-          WebkitBackdropFilter: 'blur(10px) saturate(1.4)',
-          transform: 'translateZ(0)',          // 合成层隔离 backdrop-filter, 滚动不重绘
-          display: 'flex', alignItems: 'center', justifyContent: 'center',
-          zIndex: 90,
-          opacity: showCtrl ? 1 : 0,
-          pointerEvents: showCtrl ? 'auto' : 'none',
-          transformStyle: 'preserve-3d',
-          ...(showCtrl
-            ? { transform: 'translateZ(0) translateY(0)' }
-            : { transform: 'translateZ(0) translateY(-8px)' }
-          ),
-          transition: 'opacity .3s var(--ease-sin), transform .3s var(--ease-sin), box-shadow .2s ease',
-          boxShadow: '0 4px 20px rgba(0,0,0,0.4)',
-          cursor: 'pointer',
-        }}
-      >
-        {audioState === 'on' && <Volume2 size={18} color="var(--orange)" />}
-        {audioState === 'muted' && <VolumeX size={18} color="#fafafa" />}
-        {audioState === 'paused' && <Play size={18} color="#fafafa" />}
-      </button>
+      {/* ====== 音乐播放器 (新) ====== */}
+      <MusicPlayer />
     </section>
   )
 }
