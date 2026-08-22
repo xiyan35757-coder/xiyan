@@ -90,7 +90,7 @@ export default function GamerDNA() {
               animation: 'heroTitleIn 700ms cubic-bezier(0.16, 1, 0.3, 1) 80ms forwards',
             }}
           >
-            2000+ 小时跨品类&nbsp;
+            5000+ 小时跨品类&nbsp;
             <span
               style={{
                 backgroundImage:

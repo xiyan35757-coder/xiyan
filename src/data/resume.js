@@ -1,6 +1,6 @@
 export const skills = [
   { name: '数据分析',     icon: '📊', desc: '千条UGC标签化 · Excel/MATLAB建模 · 双维度(舆情+行为)分析框架' },
-  { name: '用户洞察',     icon: '🎯', desc: 'ENFJ共情力 · 玩家需求拆解 · 2000+h跨品类游戏体感 · Z世代语境理解' },
+  { name: '用户洞察',     icon: '🎯', desc: 'ENFJ共情力 · 玩家需求拆解 · 5000+h跨品类游戏体感 · Z世代语境理解' },
   { name: '活动策划',     icon: '🎪', desc: 'CF校园代理人落地活动 · 游戏版本活动参与率评估 · 轻量化创意输出10+条' },
   { name: '项目管理',     icon: '🗂️', desc: '3次5-7人团队组长按期交付 · 策划文档标准化 · 程序/美术对接 · 版本迭代台账' },
   { name: 'AI工具应用',   icon: '🤖', desc: 'AI内容生产工作流 · Trae/Midjourney/剪映熟练 · A/B测试内容迭代' },

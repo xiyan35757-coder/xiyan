@@ -301,7 +301,7 @@ export default function Hero() {
             animation: 'heroBlurUp 1s var(--ease-luxe) 0.5s both',
           }}
         >
-          <Sparkles size={14} /> 2000+ HOURS GAMER DNA · 求职中 OPEN TO OFFERS
+          <Sparkles size={14} /> 5000+ HOURS GAMER DNA · 求职中 OPEN TO OFFERS
         </p>
 
         <h1
@@ -337,7 +337,7 @@ export default function Hero() {
             animation: 'heroBlurUp 1.1s var(--ease-luxe) 0.95s both',
           }}
         >
-          谢茂宇 · 21岁应届 · 机械工程背景硬核玩家 · 2000+ 小时游戏阅历覆盖 MOBA/FPS/RPG/策略/生存多品类。用理工科数据分析思维 + ENFJ 天生共情力，从玩家视角拆解体验痛点，用数据验证假设，用创意驱动增长。想和爱游戏的人一起做有意思的事。
+          谢茂宇 · 21岁应届 · 机械工程背景硬核玩家 · 5000+ 小时游戏阅历覆盖 MOBA/FPS/RPG/策略/生存多品类。用理工科数据分析思维 + ENFJ 天生共情力，从玩家视角拆解体验痛点，用数据验证假设，用创意驱动增长。想和爱游戏的人一起做有意思的事。
         </p>
 
         {/* ======== 3D 弧形图片带 ======== */}

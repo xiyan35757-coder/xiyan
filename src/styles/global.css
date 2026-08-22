@@ -336,6 +336,10 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   from { opacity: 0; transform: scale(0.96); }
   to   { opacity: 1; transform: scale(1); }
 }
+@keyframes projSlideIn {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
 @media (prefers-reduced-motion: reduce) {
   /* 减少动画的用户: 直接取消所有入场动画,强制内容可见,绝不透明 */
   *, *::before, *::after {
@@ -492,3 +496,27 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .absolute { position: absolute; }
 .inset-0 { top:0; right:0; bottom:0; left:0; }
 .z-10 { z-index: 10; } .z-20 { z-index: 20; }
+
+/* ====== Projects Grid Responsive ====== */
+@media (max-width: 1100px) {
+  .projects-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+@media (max-width: 700px) {
+  .projects-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* Project card download button hover */
+.project-download-btn:hover {
+  transform: translateY(-1px);
+}
+.project-card {
+  transition: transform 300ms ease, box-shadow 300ms ease;
+}
+.project-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+}
