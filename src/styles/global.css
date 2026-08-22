@@ -469,11 +469,36 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .fade-img { opacity: 0; filter: blur(6px); transition: opacity 1s var(--ease-sin), filter .5s var(--ease-sin); }
 .fade-img.is-loaded { opacity: 1; filter: blur(0); }
 
-/* ====== Scrollbar (subtle) ====== */
-::-webkit-scrollbar { width: 10px; height: 10px; }
-::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: rgba(14,14,14,0.2); border-radius: 10px; }
-::-webkit-scrollbar-thumb:hover { background: var(--orange); }
+/* ====== Scrollbar — 黑色透明滑动栏 ====== */
+/* 更宽的 scrollbar + 深色半透明 thumb, 方便抓取拖动 */
+::-webkit-scrollbar { width: 14px; height: 14px; }
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+  margin: 4px 0;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.55);
+  border-radius: 10px;
+  border: 3px solid rgba(0, 0, 0, 0);
+  background-clip: padding-box;
+  transition: background 200ms ease;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--orange);
+  background-clip: padding-box;
+  border: 3px solid rgba(0, 0, 0, 0);
+}
+::-webkit-scrollbar-thumb:active {
+  background: rgba(0, 0, 0, 0.8);
+  background-clip: padding-box;
+  border: 3px solid rgba(0, 0, 0, 0);
+}
+/* Firefox 兼容 */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.55) rgba(0, 0, 0, 0.15);
+}
 
 /* ====== Utilities ====== */
 .text-center { text-align: center; }
